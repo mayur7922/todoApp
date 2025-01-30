@@ -2,8 +2,8 @@ import { ITask } from '../Interfaces'
 
 interface Props {
     task: ITask;
-    completeTask(taskNameToDelete: string): void;
-    toggleTaskCompletion(taskNameToToggle: string): void;
+    completeTask(taskidToDelete: number): void;
+    toggleTaskCompletion(taskidToToggle: number): void;
 }
 
 const TodoTask = ({task, completeTask, toggleTaskCompletion}: Props) => {
@@ -12,13 +12,13 @@ const TodoTask = ({task, completeTask, toggleTaskCompletion}: Props) => {
             <div className='task'>
                 <div className='content'>
                     <input type="checkbox" checked={task.completed} onChange={() => {
-                        toggleTaskCompletion(task.taskName)
+                        toggleTaskCompletion(task.id)
                     } }/>
                     <span>{task.taskName}</span>
                     <span>{task.date}</span>
                 </div>
                 <button onClick={() => {
-                    completeTask(task.taskName)
+                    completeTask(task.id)
                 }}>X</button>
             </div>
         </div>

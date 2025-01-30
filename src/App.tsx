@@ -16,21 +16,21 @@ const App = () => {
   const addTask = (): void => {
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString().split("T")[0];
-    const newTask = { taskName: task, date: formattedDate, completed: false};
+    const newTask = { taskName: task, date: formattedDate, completed: false, id: (todoList.length) + 1};
     setTodoList([...todoList, newTask]);
     setTask("");
   }
 
-  const completeTask = (taskNameToDelete: string): void => {
+  const completeTask = (taskidToDelete: number): void => {
     setTodoList(todoList.filter((task) => {
-      return task.taskName != taskNameToDelete;
+      return task.id != taskidToDelete;
     }))
   }
 
-  const toggleTaskCompletion = (taskNameToToggle: string) => {
+  const toggleTaskCompletion = (taskidToToggle: number) => {
     setTodoList((todoList) =>
       todoList.map((task) =>
-        task.taskName === taskNameToToggle
+        task.id === taskidToToggle
           ? { ...task, completed: !task.completed }
           : task
       )
